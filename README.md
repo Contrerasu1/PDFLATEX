@@ -1,27 +1,17 @@
-FROM node:18-bullseye
+# n8n + LaTeX (Render)
 
-ENV DEBIAN_FRONTEND=noninteractive
+Este proyecto contiene un entorno Docker personalizado para desplegar n8n en Render con `pdflatex` preinstalado.
 
-RUN apt-get update && \
-    apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
-    libx11-dev libglu1-mesa && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+## Funciones principales
 
-RUN npm install -g n8n
+- Editor visual de workflows (n8n)
+- Generación de documentos LaTeX
+- Exportación de CVs como PDF
+- Despliegue 100% en la nube con Render
 
-RUN useradd --user-group --create-home --shell /bin/false n8n
-ENV N8N_USER=n8n
-RUN mkdir -p /home/n8n/.n8n && chown -R n8n:n8n /home/n8n
+## Acceso
 
-USER n8n
+Puerto expuesto: 5678  
+Usuario: `admin`  
+Contraseña: `admin123`  
 
-ENV N8N_BASIC_AUTH_ACTIVE=true \
-    N8N_BASIC_AUTH_USER=admin \
-    N8N_BASIC_AUTH_PASSWORD=admin123 \
-    N8N_PORT=5678 \
-    N8N_HOST=0.0.0.0 \
-    NODE_ENV=production
-
-EXPOSE 5678
-
-CMD ["n8n"]
