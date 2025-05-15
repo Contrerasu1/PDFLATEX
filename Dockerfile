@@ -1,4 +1,4 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:latest-debian
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -21,4 +21,3 @@ ENV N8N_BASIC_AUTH_ACTIVE=true \
 EXPOSE 5678
 
 CMD ["tini", "--", "n8n"]
-
