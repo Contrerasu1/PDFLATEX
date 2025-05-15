@@ -1,4 +1,4 @@
-FROM node:18-bullseye
+ FROM node:18-bullseye
 
 # Instalar texlive y utilidades necesarias
 RUN apt-get update && \
